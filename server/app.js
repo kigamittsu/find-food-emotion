@@ -6,7 +6,16 @@ const Redis = require("ioredis");
 
 require("dotenv").config();
 
-const redis = new Redis();
+let port = process.env.REDIS_PORT;
+let host = process.env.REDIS_HOST;
+let mongoUrl = process.env.MONGO_URL;
+if (process.env.NODE_ENV === "development") {
+    port = "6379";
+    host = "localhost";
+    mongoUrl = "mongodb://localhost:27017";
+}
+
+const redis = new Redis(port, host);
 redis.set("anger", "Angry");
 redis.set("neutral", "Bored");
 redis.set("contempt", "Fear");
@@ -65,9 +74,8 @@ app.get("/api/restaurants", async (req, res) => {
     const emotion = await redis.get(query).then((res) => {
         return res;
     });
-    const url = "mongodb://localhost:27017";
     const dbName = "myProject";
-    const client = new MongoClient(url);
+    const client = new MongoClient(mongoUrl);
     await client.connect(function (err, client) {
         console.log("Connected Mongo");
         const db = client.db(dbName);

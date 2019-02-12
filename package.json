@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node server",
-    "hack:client": "vue-cli-service serve",
-    "hack:server": "nodemon server",
-    "hack": "concurrently \"yarn hack:server\" \"yarn hack:client\"",
+    "hack:client": "NODE_ENV=development vue-cli-service serve",
+    "hack:server": "NODE_ENV=development nodemon server",
+    "hack": "NODE_ENV=development concurrently \"yarn hack:server\" \"yarn hack:client\"",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit",
-    "heroku-postbuild": "yarn build && yarn migrate"
+    "heroku-postbuild": "yarn build && node data/import.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

@@ -1,9 +1,13 @@
 const mongo = require("mongodb").MongoClient;
 
+let mongoUrl = process.env.MONGO_URL;
+if (process.env.NODE_ENV === "development") {
+    mongoUrl = "mongodb://localhost:27017";
+}
+
 const insertMongo = (restaurants) => {
-    const url = "mongodb://localhost:27017";
     const dbName = "myProject";
-    const client = new mongo(url);
+    const client = new mongo(mongoUrl);
     client.connect((err, client) => {
         console.log("Connected Mongo");
 
