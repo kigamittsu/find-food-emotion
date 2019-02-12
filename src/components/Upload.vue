@@ -38,9 +38,13 @@ export default {
         data: {
           photo: this.photoImage
         }
-      }).then(response => {
-        this.setResult(response.data);
-      });
+      })
+        .then(response => {
+          this.setResult(response.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     setResult: function(emotion) {
       Object.keys(emotion).map((key, index) => {
