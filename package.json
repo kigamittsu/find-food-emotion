@@ -3,20 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "node server",
+    "hack:client": "vue-cli-service serve",
+    "hack:server": "nodemon server",
+    "hack": "concurrently \"yarn hack:server\" \"yarn hack:client\"",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "vue-cli-service test:unit",
+    "heroku-postbuild": "yarn build && yarn migrate"
   },
   "dependencies": {
-    "vue": "^2.5.22"
+    "axios": "^0.18.0",
+    "b64-to-blob": "^1.2.19",
+    "chart.js": "^2.7.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "vue": "^2.5.22",
+    "vue-chartjs": "3.3.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-unit-mocha": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
+    "@vue/eslint-config-prettier": "^3.0.5",
+    "@vue/test-utils": "^1.0.0-beta.20",
     "babel-eslint": "^10.0.1",
+    "chai": "^4.1.2",
+    "concurrently": "^3.6.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "lint-staged": "^7.2.0",
+    "nodemon": "^1.18.3",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
