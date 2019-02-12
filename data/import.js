@@ -17,7 +17,7 @@ require("dotenv").config();
             lang: "en",
             pref: "PREF13",
             hit_per_page: "20",
-            offset_page: "5"
+            offset_page: "1"
         }
     }).then((response) => {
         const result = response.data.rest.map((restaurant) => {
