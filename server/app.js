@@ -2,12 +2,23 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const MongoClient = require("mongodb").MongoClient;
+const Redis = require("ioredis");
 
 require("dotenv").config();
 
+const redis = new Redis();
+redis.set("anger", "Angry");
+redis.set("neutral", "Bored");
+redis.set("contempt", "Fear");
+redis.set("disgust", "Excited");
+redis.set("fear", "Fear");
+redis.set("happiness", "Happy");
+redis.set("sadness", "Sad");
+redis.set("surprise", "Excited");
+
 app.use(express.json({
     limit: "100mb"
-}))
+}));
 app.use(express.urlencoded({
     limit: "100mb"
 }));
@@ -49,17 +60,20 @@ app.post("/api/upload", express.json(), (req, res) => {
         });
 });
 
-app.get("/api/restaurants", (req, res) => {
-    const query = req.query;
+app.get("/api/restaurants", async (req, res) => {
+    const query = req.query.emotion;
+    const emotion = await redis.get(query).then((res) => {
+        return res;
+    });
     const url = "mongodb://localhost:27017";
     const dbName = "myProject";
     const client = new MongoClient(url);
-    client.connect(function (err, client) {
+    await client.connect(function (err, client) {
         console.log("Connected Mongo");
         const db = client.db(dbName);
         const collection = db.collection("restaurants");
         collection.find({
-            "emotion.key": query.emotion
+            "emotion.key": emotion
         }).toArray().then((result) => {
             res.json(result);
         });

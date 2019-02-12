@@ -17,41 +17,41 @@ export default {
     //   this.getRestrants();
     // },
     getRestrants: function() {
-      let emotion = "";
-      switch (this.highest) {
-        case "anger": {
-          emotion = "Angry";
-          break;
-        }
-        case "neutral": {
-          emotion = "Bored";
-          break;
-        }
-        case "contempt": {
-          emotion = "Fear";
-          break;
-        }
-        case "disgust": {
-          emotion = "Excited";
-          break;
-        }
-        case "fear": {
-          emotion = "Fear";
-          break;
-        }
-        case "happiness": {
-          emotion = "Happy";
-          break;
-        }
-        case "sadness": {
-          emotion = "Sad";
-          break;
-        }
-        case "surprise": {
-          emotion = "Excited";
-          break;
-        }
-      }
+      // let emotion = "";
+      // switch (this.highest) {
+      //   case "anger": {
+      //     emotion = "Angry";
+      //     break;
+      //   }
+      //   case "neutral": {
+      //     emotion = "Bored";
+      //     break;
+      //   }
+      //   case "contempt": {
+      //     emotion = "Fear";
+      //     break;
+      //   }
+      //   case "disgust": {
+      //     emotion = "Excited";
+      //     break;
+      //   }
+      //   case "fear": {
+      //     emotion = "Fear";
+      //     break;
+      //   }
+      //   case "happiness": {
+      //     emotion = "Happy";
+      //     break;
+      //   }
+      //   case "sadness": {
+      //     emotion = "Sad";
+      //     break;
+      //   }
+      //   case "surprise": {
+      //     emotion = "Excited";
+      //     break;
+      //   }
+      // }
       axios({
         method: "get",
         url: "/api/restaurants",
@@ -60,7 +60,7 @@ export default {
           "Access-Control-Allow-Origin": "*"
         },
         params: {
-          emotion: emotion
+          emotion: this.highest
         }
       })
         .then(response => {
