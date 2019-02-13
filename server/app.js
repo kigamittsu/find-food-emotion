@@ -3,6 +3,7 @@ const app = express();
 const axios = require("axios");
 const MongoClient = require("mongodb").MongoClient;
 const Redis = require("ioredis");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -26,6 +27,9 @@ redis.set("fear", "Fear");
 redis.set("happiness", "Happy");
 redis.set("sadness", "Sad");
 redis.set("surprise", "Excited");
+
+// Serve static assets
+app.use(express.static(path.resolve(__dirname, "..", "dist")));
 
 app.use(express.json({
     limit: "100mb"
