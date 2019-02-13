@@ -11,13 +11,14 @@ require("dotenv").config();
     //TODO: remove
     const key1 = process.env.GURUNAVI_KEY;
     const key2 = process.env.PARALLELDOTS_KEY;
+    const offset = process.env.OFFSET_PAGE;
     const restaurants = await axios.get(uriBase1, {
         params: {
             keyid: key1,
             lang: "en",
             pref: "PREF13",
             hit_per_page: "20",
-            offset_page: "1"
+            offset_page: offset
         }
     }).then((response) => {
         const result = response.data.rest.map((restaurant) => {
