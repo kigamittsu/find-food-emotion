@@ -9,10 +9,12 @@ require("dotenv").config();
 let port = process.env.REDIS_PORT;
 let host = process.env.REDIS_HOST;
 let mongoUrl = process.env.MONGO_URL;
+let mongoDB = process.env.MONGO_DB;
 if (process.env.NODE_ENV === "development") {
     port = "6379";
     host = "localhost";
     mongoUrl = "mongodb://localhost:27017";
+    mongoDB = "myProject"
 }
 
 const redis = new Redis(port, host);
@@ -74,11 +76,10 @@ app.get("/api/restaurants", async (req, res) => {
     const emotion = await redis.get(query).then((res) => {
         return res;
     });
-    const dbName = "myProject";
     const client = new MongoClient(mongoUrl);
     await client.connect(function (err, client) {
         console.log("Connected Mongo");
-        const db = client.db(dbName);
+        const db = client.db(mongoDB);
         const collection = db.collection("restaurants");
         collection.find({
             "emotion.key": emotion
