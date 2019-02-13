@@ -2,7 +2,7 @@
   <div class="upload-btn-wrapper">
     <button class="btn">Upload a file</button>
     <input @change="(event) => setUploadImage(event)" type="file" name="uploadfile">
-    <div v-if="photoImage.length !== 0">
+    <div class="img-wrapper" v-if="photoImage.length !== 0">
       <img :src="photoImage" class="upload-image">
       <button @click="postFaceAPI" class="btn submit">Submit</button>
     </div>
@@ -78,7 +78,15 @@ export default {
 
 .upload-image {
   width: 300px;
-  height: 400px;
   display: block;
+}
+
+.img-wrapper {
+  margin-top: 30px;
+}
+
+.submit {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 </style>

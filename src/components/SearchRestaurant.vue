@@ -1,6 +1,6 @@
 <template>
   <div class="search-restaurant-wrapper">
-    <button @click="getRestrants" class="btn">
+    <button @click="getRestrants" class="btn getRestaurants">
       Search
       <span class="highest">{{highest}}</span> Restaurants
     </button>
@@ -121,4 +121,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.getRestaurants {
+  width: 350px;
+}
+.search-restaurant-wrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 </style>

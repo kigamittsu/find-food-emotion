@@ -120,7 +120,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .btn {
@@ -131,9 +131,20 @@ export default {
   border-radius: 8px;
   font-size: 20px;
   font-weight: bold;
+  width: 170px;
 }
 
 .highest {
   color: #ff1414;
+}
+
+.header {
+  background-color: #228b22;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.858);
+  height: 50px;
+}
+.header h2 {
+  vertical-align: middle;
 }
 </style>
