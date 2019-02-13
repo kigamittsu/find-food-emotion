@@ -7,18 +7,16 @@ const path = require("path");
 
 require("dotenv").config();
 
-let port = process.env.REDIS_PORT;
-let host = process.env.REDIS_HOST;
+let redisUrl = process.env.REDIS_URL;
 let mongoUrl = process.env.MONGO_URL;
 let mongoDB = process.env.MONGO_DB;
 if (process.env.NODE_ENV === "development") {
-    port = "6379";
-    host = "localhost";
+    redisUrl = "redis://127.0.0.1/6379"
     mongoUrl = "mongodb://localhost:27017";
     mongoDB = "myProject"
 }
 
-const redis = new Redis(port, host);
+const redis = new Redis(redisUrl);
 redis.set("anger", "Angry");
 redis.set("neutral", "Bored");
 redis.set("contempt", "Fear");
