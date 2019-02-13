@@ -1,6 +1,8 @@
 "This was created during my time as a student at Code Chrysalis."
 
-# find-food-emotion
+# find-restaurants-emotion
+
+This application can allow to search the restaurants from your current emotion.
 
 ## Project setup
 
@@ -69,6 +71,14 @@ yarn test
 ```
 yarn lint
 ```
+
+## Feature Plan
+
+1. Display the map of restaurants
+2. More Mobile Friendly
+3. Using Redis as cache
+4. Add more restaurants data
+5. Implement User Login system
 
 ## Contributing
 
